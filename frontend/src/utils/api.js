@@ -100,9 +100,9 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-63',
+  baseUrl: 'https://mesto.anton-chernikov.nomoredomains.work',
   headers: {
-    authorization: '00d3b65e-bd00-4c6d-a214-4372f39633e0',
+    // authorization: '00d3b65e-bd00-4c6d-a214-4372f39633e0',
     'Content-Type': 'application/json'
   }
 });

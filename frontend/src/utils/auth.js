@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://auth.nomoreparties.co';
+export const BASE_URL = 'https://mesto.anton-chernikov.nomoredomains.work';
 
 export const getResponseData = (res) => { // Получает данные ответа
   if (!res.ok) {
