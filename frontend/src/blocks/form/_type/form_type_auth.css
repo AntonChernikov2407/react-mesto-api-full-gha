@@ -1,0 +1,10 @@
+.form_type_auth {
+  margin: 60px auto;
+}
+
+@media screen and (max-width: 620px) {
+  .form_type_auth {
+    max-width: 260px;
+    margin: 40px auto;
+  }
+}

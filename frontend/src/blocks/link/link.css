@@ -1,0 +1,12 @@
+.link {
+  color: #fff;
+  margin: 0;
+  text-decoration: none;
+  opacity: 1;
+  transition: opacity 0.2s ease-in-out;
+  align-self: center;
+}
+
+.link:hover {
+  opacity: 0.6;
+}

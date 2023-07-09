@@ -1,0 +1,15 @@
+.popup__result-text {
+  max-width: 358px;
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 1.2;
+  margin: 0;
+  text-align: center;
+}
+
+@media screen and (max-width: 620px) {
+  .popup__result-text {
+    font-size: 20px;
+    line-height: 1.2;
+  }
+}

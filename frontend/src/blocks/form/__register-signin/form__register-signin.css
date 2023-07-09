@@ -1,0 +1,14 @@
+.form__register-signin {
+  margin: 15px auto 0;
+  max-width: 358px;
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (max-width: 620px) {
+  .form__register-signin {
+    margin: 20px auto 0;
+    max-width: 260px;
+
+  }
+}

@@ -1,0 +1,17 @@
+.profile__info {
+  width: max-content;
+  height: min-content;
+  display: grid;
+  grid-template-columns: repeat(2, max-content);
+  grid-template-rows: repeat(2, max-content);
+  gap: 8px 18px;
+}
+
+@media screen and (max-width: 950px) {
+  .profile__info {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    gap: 7px 0;
+  }
+}

@@ -1,0 +1,7 @@
+.popup__zoom-image {
+  width: max-content;
+  height: max-content;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}

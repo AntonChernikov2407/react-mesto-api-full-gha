@@ -1,0 +1,8 @@
+.profile__avatar {
+  border-radius: 50%;
+  width: inherit;
+  height: inherit;
+  object-fit: cover;
+  text-align: center;
+  line-height: 120px;
+}

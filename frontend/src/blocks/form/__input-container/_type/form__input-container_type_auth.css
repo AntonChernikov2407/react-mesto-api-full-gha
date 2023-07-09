@@ -1,0 +1,9 @@
+.form__input-container_type_auth {
+  margin-top: 50px;
+}
+
+@media screen and (max-width: 620px) {
+  .form__input-container_type_auth {
+    margin-top: 40px;
+  }
+}

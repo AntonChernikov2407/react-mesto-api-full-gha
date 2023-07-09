@@ -1,0 +1,8 @@
+.sidebar {
+  max-height: 0;
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid rgba(84, 84, 84, 0.7);
+  visibility: hidden;
+  transition: max-height 0.1s linear;
+}

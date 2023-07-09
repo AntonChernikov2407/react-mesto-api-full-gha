@@ -1,0 +1,6 @@
+.popup__result-icon {
+  width: 120px;
+  height: 120px;
+  background-image: url(../../../images/logo/not-successfully.svg);
+  margin: 0 auto 32px;
+}

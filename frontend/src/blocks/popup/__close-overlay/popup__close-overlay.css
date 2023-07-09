@@ -1,0 +1,6 @@
+.popup__close-overlay {
+  width: inherit;
+  height: inherit;
+  position: inherit;
+  cursor: pointer;
+}
