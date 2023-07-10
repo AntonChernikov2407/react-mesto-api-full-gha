@@ -99,12 +99,12 @@ class Api {
   }
 
 }
-const jwt = localStorage.getItem('jwt');
+// const jwt = localStorage.getItem('jwt');
 const api = new Api({
   baseUrl: 'https://api.mesto.anton-chernikov.nomoredomains.work',
   headers: {
     // 'Authorization': '00d3b65e-bd00-4c6d-a214-4372f39633e0',
-    'Authorization': `Bearer ${jwt}`,
+    'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
     'Content-Type': 'application/json'
   }
 });
