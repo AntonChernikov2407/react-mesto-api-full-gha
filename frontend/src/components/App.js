@@ -147,8 +147,8 @@ const App = memo(() => {
   }
 
   function onLogin(token) {
-    setLoggedIn(true);
     localStorage.setItem('jwt', token);
+    setLoggedIn(true);
     // api.getAllInfo()
     //   .then((res) => {
     //     const [info, cardsArray] = res;
