@@ -15,7 +15,7 @@ import { useState, useEffect, memo } from 'react';
 import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
 import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 import api from '../utils/api.js';
-// import * as auth from '../utils/auth.js';
+import * as auth from '../utils/auth.js';
 import ProtectedRouteElement from './ProtectedRoute.js';
 
 const App = memo(() => {
@@ -61,7 +61,7 @@ const App = memo(() => {
         //     }
         //   })
         //   .catch(err => console.log(err));
-        api.getAllInfo()
+        auth.getContent(jwt)
           .then((res) => {
             const [info, cardsArray] = res;
             setCurrentUser(info);
@@ -149,12 +149,6 @@ const App = memo(() => {
   function onLogin(token) {
     localStorage.setItem('jwt', token);
     setLoggedIn(true);
-    // api.getAllInfo()
-    //   .then((res) => {
-    //     const [info, cardsArray] = res;
-    //     setCurrentUser(info);
-    //     setCards(cardsArray);
-    //   });
   }
 
   function onRegister(value) {

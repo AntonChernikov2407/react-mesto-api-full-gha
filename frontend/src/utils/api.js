@@ -14,14 +14,14 @@ class Api {
     return res.json();
   }
 
-  getUserInfo() { // Запрос на получение информации о пользователе
-    return fetch(`${this._baseUrl}/users/me`, {
-      headers: this._headers
-    })
-    .then(res => this._getResponseData(res))
-    .then(info => info)
-    .catch(err => console.log(err));
-  }
+  // getUserInfo() { // Запрос на получение информации о пользователе
+  //   return fetch(`${this._baseUrl}/users/me`, {
+  //     headers: this._headers
+  //   })
+  //   .then(res => this._getResponseData(res))
+  //   .then(info => info)
+  //   .catch(err => console.log(err));
+  // }
 
   patchUserInfo({name, about}) { // Запрос на обновление информации о пользователе
     return fetch(`${this._baseUrl}/users/me`, {
@@ -35,29 +35,29 @@ class Api {
     .then(res => this._getResponseData(res))
   }
 
-  getInitialCards() { // Запрос на получение всех карточек
-    return fetch(`${this._baseUrl}/cards`, {
-      headers: this._headers
-    })
-    .then(res => this._getResponseData(res))
-    .then((data) => {
-      console.log(data)
-      const result = data.map((card) => ({
-        id: card._id,
-        name: card.name,
-        link: card.link,
-        likes: card.likes,
-        owner: card.owner
-      }));
-      return result;
-    })
-    .catch(err => console.log(err));
-  }
+  // getInitialCards() { // Запрос на получение всех карточек
+  //   return fetch(`${this._baseUrl}/cards`, {
+  //     headers: this._headers
+  //   })
+  //   .then(res => this._getResponseData(res))
+  //   .then((data) => {
+  //     console.log(data)
+  //     const result = data.map((card) => ({
+  //       id: card._id,
+  //       name: card.name,
+  //       link: card.link,
+  //       likes: card.likes,
+  //       owner: card.owner
+  //     }));
+  //     return result;
+  //   })
+  //   .catch(err => console.log(err));
+  // }
 
-  getAllInfo() {
-    return Promise.all([this.getUserInfo(), this.getInitialCards()])
-      .then(res => res);
-  }
+  // getAllInfo() {
+  //   return Promise.all([this.getUserInfo(), this.getInitialCards()])
+  //     .then(res => res);
+  // }
 
   postNewCard({name, link}) { // Запрос на добавление новой карточки
     return fetch(`${this._baseUrl}/cards`, {
