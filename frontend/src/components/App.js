@@ -43,7 +43,7 @@ const App = memo(() => {
         setCurrentUser(info);
         setCards(cardsArray);
       });
-  }, [])
+  }, [loggedIn])
 
   useEffect(() => {
     tokenCheck();
