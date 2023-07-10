@@ -99,7 +99,6 @@ class Api {
 
 }
 const jwt = localStorage.getItem('jwt');
-console.log(jwt);
 const api = new Api({
   baseUrl: 'https://api.mesto.anton-chernikov.nomoredomains.work',
   headers: {

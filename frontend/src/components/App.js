@@ -15,7 +15,7 @@ import { useState, useEffect, memo } from 'react';
 import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
 import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
 import api from '../utils/api.js';
-import * as auth from '../utils/auth.js';
+// import * as auth from '../utils/auth.js';
 import ProtectedRouteElement from './ProtectedRoute.js';
 
 const App = memo(() => {
@@ -52,15 +52,24 @@ const App = memo(() => {
   function tokenCheck() {
     const jwt = localStorage.getItem('jwt');
       if (jwt) {
-        auth.getContent(jwt)
+        // auth.getContent(jwt)
+        //   .then((res) => {
+        //     if (res) {
+        //       setEmail(res.data.email);
+        //       setLoggedIn(true);
+        //       navigate('/', {replace: true});
+        //     }
+        //   })
+        //   .catch(err => console.log(err));
+        api.getAllInfo()
           .then((res) => {
-            if (res) {
-              setEmail(res.data.email);
-              setLoggedIn(true);
-              navigate('/', {replace: true});
-            }
-          })
-          .catch(err => console.log(err));
+            const [info, cardsArray] = res;
+            setCurrentUser(info);
+            setCards(cardsArray);
+            setEmail(info.email);
+            setLoggedIn(true);
+            navigate('/', {replace: true});
+          });
       }
   }
 
@@ -140,12 +149,12 @@ const App = memo(() => {
   function onLogin(token) {
     setLoggedIn(true);
     localStorage.setItem('jwt', token);
-    api.getAllInfo()
-      .then((res) => {
-        const [info, cardsArray] = res;
-        setCurrentUser(info);
-        setCards(cardsArray);
-      });
+    // api.getAllInfo()
+    //   .then((res) => {
+    //     const [info, cardsArray] = res;
+    //     setCurrentUser(info);
+    //     setCards(cardsArray);
+    //   });
   }
 
   function onRegister(value) {
