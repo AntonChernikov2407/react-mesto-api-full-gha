@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://mesto.anton-chernikov.nomoredomains.work';
+export const BASE_URL = 'https://api.mesto.anton-chernikov.nomoredomains.work';
 
 export const getResponseData = (res) => { // Получает данные ответа
   if (!res.ok) {

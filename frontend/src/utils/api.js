@@ -100,7 +100,7 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: 'https://mesto.anton-chernikov.nomoredomains.work',
+  baseUrl: 'https://api.mesto.anton-chernikov.nomoredomains.work',
   headers: {
     // authorization: '00d3b65e-bd00-4c6d-a214-4372f39633e0',
     'Content-Type': 'application/json'

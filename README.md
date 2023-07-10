@@ -7,8 +7,8 @@
 
 ## Ссылки на проект
 
-IP-адрес 158.160.69.104
+IP 158.160.69.104
 
-Frontend http://mesto.anton-chernikov.nomoredomains.work
+Frontend https://mesto.anton-chernikov.nomoredomains.work
 
-Backend http://api.mesto.anton-chernikov.nomoredomains.work
+Backend https://api.mesto.anton-chernikov.nomoredomains.work
