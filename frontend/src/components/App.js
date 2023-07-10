@@ -36,14 +36,14 @@ const App = memo(() => {
   const [email, setEmail] = useState('');
   const navigate = useNavigate();
 
-  useEffect(() => {
-    api.getAllInfo()
-      .then((res) => {
-        const [info, cardsArray] = res;
-        setCurrentUser(info);
-        setCards(cardsArray);
-      });
-  }, [])
+  // useEffect(() => {
+  //   api.getAllInfo()
+  //     .then((res) => {
+  //       const [info, cardsArray] = res;
+  //       setCurrentUser(info);
+  //       setCards(cardsArray);
+  //     });
+  // }, [])
 
   useEffect(() => {
     tokenCheck();
@@ -140,6 +140,12 @@ const App = memo(() => {
   function onLogin(token) {
     setLoggedIn(true);
     localStorage.setItem('jwt', token);
+    api.getAllInfo()
+      .then((res) => {
+        const [info, cardsArray] = res;
+        setCurrentUser(info);
+        setCards(cardsArray);
+      });
   }
 
   function onRegister(value) {
