@@ -36,14 +36,17 @@ const App = memo(() => {
   const [email, setEmail] = useState('');
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   api.getAllInfo()
-  //     .then((res) => {
-  //       const [info, cardsArray] = res;
-  //       setCurrentUser(info);
-  //       setCards(cardsArray);
-  //     });
-  // }, [])
+  useEffect(() => {
+    const jwt = localStorage.getItem('jwt');
+    if (loggedIn && jwt) {
+      api.getAllInfo()
+        .then((res) => {
+          const [info, cardsArray] = res;
+          setCurrentUser(info);
+          setCards(cardsArray);
+        });
+    }
+  }, [loggedIn])
 
   useEffect(() => {
     tokenCheck();
@@ -52,24 +55,15 @@ const App = memo(() => {
   function tokenCheck() {
     const jwt = localStorage.getItem('jwt');
       if (jwt) {
-        // auth.getContent(jwt)
-        //   .then((res) => {
-        //     if (res) {
-        //       setEmail(res.data.email);
-        //       setLoggedIn(true);
-        //       navigate('/', {replace: true});
-        //     }
-        //   })
-        //   .catch(err => console.log(err));
         auth.getContent(jwt)
           .then((res) => {
-            const [info, cardsArray] = res;
-            setCurrentUser(info);
-            setCards(cardsArray);
-            setEmail(info.email);
-            setLoggedIn(true);
-            navigate('/', {replace: true});
-          });
+            if (res) {
+              setEmail(res.data.email);
+              setLoggedIn(true);
+              navigate('/', {replace: true});
+            }
+          })
+          .catch(err => console.log(err));
       }
   }
 
