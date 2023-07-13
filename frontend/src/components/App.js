@@ -58,6 +58,7 @@ const App = memo(() => {
         auth.getContent(jwt)
           .then((res) => {
             if (res) {
+              console.log(res)
               setEmail(res.email);
               setLoggedIn(true);
               navigate('/', {replace: true});
