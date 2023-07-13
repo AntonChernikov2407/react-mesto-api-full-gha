@@ -43,6 +43,7 @@ const App = memo(() => {
         .then((res) => {
           const [info, cardsArray] = res;
           setCurrentUser(info);
+          setEmail(info.email);
           setCards(cardsArray);
         });
     }
@@ -59,7 +60,7 @@ const App = memo(() => {
           .then((res) => {
             if (res) {
               console.log(res)
-              setEmail(res.email);
+              // setEmail(res.email);
               setLoggedIn(true);
               navigate('/', {replace: true});
             }

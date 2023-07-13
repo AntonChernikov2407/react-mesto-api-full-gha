@@ -3,7 +3,7 @@ const allowedCors = [
   'https://mesto.anton-chernikov.nomoredomains.work',
   'http://api.mesto.anton-chernikov.nomoredomains.work',
   'https://api.mesto.anton-chernikov.nomoredomains.work',
-  'localhost:3000',
+  'http://localhost:3000',
 ];
 
 const cors = (req, res, next) => {

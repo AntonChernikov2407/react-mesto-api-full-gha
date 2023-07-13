@@ -41,7 +41,6 @@ class Api {
     })
     .then(res => this._getResponseData(res))
     .then((data) => {
-      console.log(Array.isArray(data))
       const result = data.map((card) => ({
         id: card._id,
         name: card.name,
