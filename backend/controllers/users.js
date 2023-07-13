@@ -6,19 +6,17 @@ const ConflictError = require('../errors/conflict-error');
 const ValidationError = require('../errors/validation-error');
 
 const getUsers = (req, res, next) => User.find({})
-  .then((users) => res.send({ data: users }))
+  .then((data) => res.send(data))
   .catch(next);
 
 const getUserById = (req, res, next) => User.findById(req.params.userId)
   .orFail(new NotFoundError('Запрашиваемый пользователь не найден'))
-  .then((user) => {
-    res.send({ data: user });
-  })
+  .then((data) => res.send(data))
   .catch(next);
 
 const getThisUserById = (req, res, next) => User.findById(req.user._id)
   .orFail(new NotFoundError('Запрашиваемый пользователь не найден'))
-  .then((user) => res.send({ data: user }))
+  .then((data) => res.send(data))
   .catch(next);
 
 const createUser = (req, res, next) => {
@@ -49,7 +47,7 @@ const updateProfileById = (req, res, next) => {
   const { name, about } = req.body;
   return User.findByIdAndUpdate(req.user._id, { name, about }, { new: true, runValidators: true })
     .orFail(new NotFoundError('Запрашиваемый пользователь не найден'))
-    .then((user) => res.send({ data: user }))
+    .then((data) => res.send(data))
     .catch((err) => {
       if (err.name === 'ValidationError') {
         next(new ValidationError(err.message));
@@ -62,7 +60,7 @@ const updateAvatarById = (req, res, next) => {
   const { avatar } = req.body;
   return User.findByIdAndUpdate(req.user._id, { avatar }, { new: true, runValidators: true })
     .orFail(new NotFoundError('Запрашиваемый пользователь не найден'))
-    .then((user) => res.send({ data: user }))
+    .then((data) => res.send(data))
     .catch((err) => {
       if (err.name === 'ValidationError') {
         next(new ValidationError(err.message));
