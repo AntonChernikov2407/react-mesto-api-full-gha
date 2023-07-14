@@ -28,7 +28,6 @@ const deleteCardById = (req, res, next) => {
 const createCard = (req, res, next) => {
   const { name, link } = req.body;
   Card.create({ name, link, owner: req.user._id })
-    .populate('owner')
     .then((data) => res.status(201).send(data))
     .catch((err) => {
       if (err.name === 'ValidationError') {
