@@ -41,7 +41,7 @@ const createCard = (req, res, next) => {
 const putLikeById = (req, res, next) => {
   Card.findByIdAndUpdate(req.params.cardId, { $addToSet: { likes: req.user._id } }, { new: true })
     .orFail(new NotFoundError('Карточка с указанным id не найдена'))
-    .populate('likes')
+    .populate(['owner', 'likes'])
     .then((data) => res.send(data))
     .catch(next);
 };
@@ -49,7 +49,7 @@ const putLikeById = (req, res, next) => {
 const deleteLikeById = (req, res, next) => {
   Card.findByIdAndUpdate(req.params.cardId, { $pull: { likes: req.user._id } }, { new: true })
     .orFail(new NotFoundError('Карточка с указанным id не найдена'))
-    .populate('likes')
+    .populate(['owner', 'likes'])
     .then((data) => res.send(data))
     .catch(next);
 };
