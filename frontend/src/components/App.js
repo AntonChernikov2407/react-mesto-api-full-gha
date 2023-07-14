@@ -36,22 +36,38 @@ const App = memo(() => {
   const [email, setEmail] = useState('');
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const jwt = localStorage.getItem('jwt');
-    if (loggedIn && jwt) {
-      api.getAllInfo()
-        .then((res) => {
-          const [info, cardsArray] = res;
-          setCurrentUser(info);
-          setEmail(info.email);
-          setCards(cardsArray);
-        });
-    }
-  }, [loggedIn])
+  // useEffect(() => {
+  //   const jwt = localStorage.getItem('jwt');
+  //   if (loggedIn && jwt) {
+  //     api.getAllInfo()
+  //       .then((res) => {
+  //         const [info, cardsArray] = res;
+  //         // setCurrentUser(info);
+  //         setCards(cardsArray.reverse());
+  //         // console.log(info);
+  //       });
+  //   }
+  // }, [loggedIn])
 
   useEffect(() => {
     tokenCheck();
   }, [loggedIn]) 
+
+  // function tokenCheck() {
+  //   const jwt = localStorage.getItem('jwt');
+  //     if (jwt) {
+  //       auth.getContent(jwt)
+  //         .then((res) => {
+  //           if (res) {
+  //             // setCurrentUser(res);
+  //             setEmail(res.email);
+  //             setLoggedIn(true);
+  //             navigate('/', {replace: true});
+  //           }
+  //         })
+  //         .catch(err => console.log(err));
+  //     }
+  // }
 
   function tokenCheck() {
     const jwt = localStorage.getItem('jwt');
@@ -59,8 +75,10 @@ const App = memo(() => {
         auth.getContent(jwt)
           .then((res) => {
             if (res) {
-              console.log(res)
-              // setEmail(res.email);
+              const [info, cardsArray] = res;
+              setCurrentUser(info);
+              setCards(cardsArray.reverse());
+              setEmail(info.email);
               setLoggedIn(true);
               navigate('/', {replace: true});
             }
@@ -70,6 +88,7 @@ const App = memo(() => {
   }
 
   function handleCardLike(card) {
+    console.log(card.likes);
     const isLiked = card.likes.some(i => i._id === currentUser._id);
     api.changeLikeCardStatus(card.id, !isLiked)
       .then((data) => {
@@ -208,8 +227,8 @@ const App = memo(() => {
           onClose={closeSideBar}
         />
         <Routes>
-          <Route path="/" element={loggedIn ? <Navigate to="/react-mesto-auth" replace /> : <Navigate to="/sign-in" replace />} />
-          <Route path="/react-mesto-auth" element={<ProtectedRouteElement
+          <Route path="/" element={loggedIn ? <Navigate to="/mesto" replace /> : <Navigate to="/sign-in" replace />} />
+          <Route path="/mesto" element={<ProtectedRouteElement
             element={Main}
             onEditProfile={handleEditProfileClick} 
             onAddPlace={handleAddPlaceClick} 

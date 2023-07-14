@@ -28,13 +28,49 @@ export const authorize = (email, password) => {
   .then(res => getResponseData(res));
 };
 
-export const getContent = (token) => {
+const getUserInfo = (token) => { // Запрос на получение информации о пользователе
   return fetch(`${BASE_URL}/users/me`, {
-    method: 'GET',
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${token}`,
     }
   })
-  .then(res => getResponseData(res));
+  .then(res => getResponseData(res))
+  .then(info => info)
+  .catch(err => console.log(err));
+}
+
+const getInitialCards = (token) => { // Запрос на получение всех карточек
+  return fetch(`${BASE_URL}/cards`, {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
+    }
+  })
+  .then(res => getResponseData(res))
+  .then((data) => {
+    const result = data.map((card) => ({
+      id: card._id,
+      name: card.name,
+      link: card.link,
+      likes: card.likes,
+      owner: card.owner
+    }));
+    return result;
+  })
+  .catch(err => console.log(err));
+}
+
+export const getContent = (token) => {
+  // return fetch(`${BASE_URL}/users/me`, {
+  //   method: 'GET',
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //     'Authorization': `Bearer ${token}`,
+  //   }
+  // })
+  // .then(res => getResponseData(res));
+
+  return Promise.all([getUserInfo(token), getInitialCards(token)])
+      .then(res => res);
 }
