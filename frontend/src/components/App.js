@@ -36,40 +36,12 @@ const App = memo(() => {
   const [email, setEmail] = useState('');
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   const jwt = localStorage.getItem('jwt');
-  //   if (loggedIn && jwt) {
-  //     api.getAllInfo()
-  //       .then((res) => {
-  //         const [info, cardsArray] = res;
-  //         // setCurrentUser(info);
-  //         setCards(cardsArray.reverse());
-  //         // console.log(info);
-  //       });
-  //   }
-  // }, [loggedIn])
-
   useEffect(() => {
-    tokenCheck();
+    checkToken();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loggedIn]) 
 
-  // function tokenCheck() {
-  //   const jwt = localStorage.getItem('jwt');
-  //     if (jwt) {
-  //       auth.getContent(jwt)
-  //         .then((res) => {
-  //           if (res) {
-  //             // setCurrentUser(res);
-  //             setEmail(res.email);
-  //             setLoggedIn(true);
-  //             navigate('/', {replace: true});
-  //           }
-  //         })
-  //         .catch(err => console.log(err));
-  //     }
-  // }
-
-  function tokenCheck() {
+  function checkToken() {
     const jwt = localStorage.getItem('jwt');
       if (jwt) {
         auth.getContent(jwt)
@@ -80,7 +52,7 @@ const App = memo(() => {
               setCards(cardsArray.reverse());
               setEmail(info.email);
               setLoggedIn(true);
-              navigate('/', {replace: true});
+              navigate('/mesto', {replace: true});
             }
           })
           .catch(err => console.log(err));
@@ -88,7 +60,6 @@ const App = memo(() => {
   }
 
   function handleCardLike(card) {
-    console.log(card.likes);
     const isLiked = card.likes.some(i => i._id === currentUser._id);
     api.changeLikeCardStatus(card.id, !isLiked)
       .then((data) => {

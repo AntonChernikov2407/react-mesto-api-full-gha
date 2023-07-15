@@ -14,15 +14,6 @@ class Api {
     return res.json();
   }
 
-  // getUserInfo() { // Запрос на получение информации о пользователе
-  //   return fetch(`${this._baseUrl}/users/me`, {
-  //     headers: this._headers
-  //   })
-  //   .then(res => this._getResponseData(res))
-  //   .then(info => info)
-  //   .catch(err => console.log(err));
-  // }
-
   patchUserInfo({name, about}) { // Запрос на обновление информации о пользователе
     return fetch(`${this._baseUrl}/users/me`, {
       method: 'PATCH',
@@ -34,29 +25,6 @@ class Api {
     })
     .then(res => this._getResponseData(res))
   }
-
-  // getInitialCards() { // Запрос на получение всех карточек
-  //   return fetch(`${this._baseUrl}/cards`, {
-  //     headers: this._headers
-  //   })
-  //   .then(res => this._getResponseData(res))
-  //   .then((data) => {
-  //     const result = data.map((card) => ({
-  //       id: card._id,
-  //       name: card.name,
-  //       link: card.link,
-  //       likes: card.likes,
-  //       owner: card.owner
-  //     }));
-  //     return result;
-  //   })
-  //   .catch(err => console.log(err));
-  // }
-
-  // getAllInfo() {
-  //   return Promise.all([this.getUserInfo(), this.getInitialCards()])
-  //     .then(res => res);
-  // }
 
   postNewCard({name, link}) { // Запрос на добавление новой карточки
     return fetch(`${this._baseUrl}/cards`, {
@@ -98,11 +66,10 @@ class Api {
   }
 
 }
-// const jwt = localStorage.getItem('jwt');
+
 const api = new Api({
   baseUrl: 'https://api.mesto.anton-chernikov.nomoredomains.work',
   headers: {
-    // 'Authorization': '00d3b65e-bd00-4c6d-a214-4372f39633e0',
     'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
     'Content-Type': 'application/json'
   }

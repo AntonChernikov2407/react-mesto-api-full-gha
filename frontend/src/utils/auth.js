@@ -62,15 +62,6 @@ const getInitialCards = (token) => { // Запрос на получение в�
 }
 
 export const getContent = (token) => {
-  // return fetch(`${BASE_URL}/users/me`, {
-  //   method: 'GET',
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //     'Authorization': `Bearer ${token}`,
-  //   }
-  // })
-  // .then(res => getResponseData(res));
-
   return Promise.all([getUserInfo(token), getInitialCards(token)])
       .then(res => res);
 }
