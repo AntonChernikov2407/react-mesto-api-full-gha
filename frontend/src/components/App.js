@@ -14,7 +14,7 @@ import Footer from './Footer.js';
 import { useState, useEffect, memo } from 'react';
 import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
 import { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
-import api from '../utils/api.js';
+import Api from '../utils/api.js';
 import * as auth from '../utils/auth.js';
 import ProtectedRouteElement from './ProtectedRoute.js';
 
@@ -58,6 +58,14 @@ const App = memo(() => {
           .catch(err => console.log(err));
       }
   }
+
+  const api = new Api({
+    baseUrl: 'https://api.mesto.anton-chernikov.nomoredomains.work',
+    headers: {
+      'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+      'Content-Type': 'application/json'
+    }
+  });
 
   function handleCardLike(card) {
     const isLiked = card.likes.some(i => i._id === currentUser._id);
