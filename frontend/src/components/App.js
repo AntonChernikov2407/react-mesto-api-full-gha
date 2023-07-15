@@ -37,8 +37,8 @@ const App = memo(() => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    localStorage.removeItem('jwt');
-    setLoggedIn(false);
+    // localStorage.removeItem('jwt');
+    // setLoggedIn(false);
     checkToken();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loggedIn]) 

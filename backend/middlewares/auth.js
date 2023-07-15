@@ -8,11 +8,11 @@ const auth = (req, res, next) => {
   }
 
   const token = authorization.replace('Bearer ', '');
-  // const { JWT_SECRET } = process.env;
+  const { JWT_SECRET } = process.env;
   let payload;
 
   try {
-    payload = jwt.verify(token, 'secret-key');
+    payload = jwt.verify(token, JWT_SECRET);
   } catch (err) {
     next(new UnauthorizedError('Необходима авторизация'));
   }
