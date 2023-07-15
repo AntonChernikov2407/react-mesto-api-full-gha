@@ -38,7 +38,6 @@ const App = memo(() => {
 
   useEffect(() => {
     checkToken();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loggedIn]) 
 
   function checkToken() {
