@@ -1,5 +1,3 @@
-
-
 class Api {
 
   constructor(options) {
