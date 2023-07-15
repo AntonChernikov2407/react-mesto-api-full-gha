@@ -5,6 +5,8 @@ const NotFoundError = require('../errors/not-found-error');
 const ConflictError = require('../errors/conflict-error');
 const ValidationError = require('../errors/validation-error');
 
+const { NODE_ENV, JWT_SECRET } = process.env;
+
 const getUsers = (req, res, next) => User.find({})
   .then((data) => res.send(data))
   .catch(next);
@@ -71,7 +73,6 @@ const updateAvatarById = (req, res, next) => {
 
 const login = (req, res, next) => {
   const { email, password } = req.body;
-  const { NODE_ENV, JWT_SECRET } = process.env;
   return User.findUserByCredentials(email, password)
     .then((user) => {
       const token = jwt.sign(
