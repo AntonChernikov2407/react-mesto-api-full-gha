@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const Card = require('../models/card');
 const NotFoundError = require('../errors/not-found-error');
 const ForbiddenError = require('../errors/forbidden-error');
@@ -28,16 +29,15 @@ const deleteCardById = (req, res, next) => {
 const createCard = (req, res, next) => {
   const { name, link } = req.body;
   Card.create({ name, link, owner: req.user._id })
-    .then((data) => {
-      data
-        .populate('owner')
-        .then(() => res.status(201).send(data));
-    })
+    .then((data) => data
+      .populate('owner')
+      .then(() => res.status(201).send(data)))
     .catch((err) => {
-      if (err.name === 'ValidationError') {
+      if (err instanceof mongoose.Error.ValidationError) {
         next(new ValidationError(err.message));
+      } else {
+        next(err);
       }
-      next(err);
     });
 };
 

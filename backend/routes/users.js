@@ -1,6 +1,5 @@
 const router = require('express').Router();
-const { celebrate, Joi } = require('celebrate');
-const pattern = require('../utils/pattern');
+const reqValidation = require('../utils/reqValidation');
 const {
   getUsers,
   getUserById,
@@ -11,21 +10,8 @@ const {
 
 router.get('/me', getThisUserById);
 router.get('/', getUsers);
-router.get('/:userId', celebrate({
-  params: Joi.object().keys({
-    userId: Joi.string().length(24).hex().required(),
-  }),
-}), getUserById);
-router.patch('/me', celebrate({
-  body: Joi.object().keys({
-    name: Joi.string().min(2).max(30),
-    about: Joi.string().min(2).max(30),
-  }),
-}), updateProfileById);
-router.patch('/me/avatar', celebrate({
-  body: Joi.object().keys({
-    avatar: Joi.string().regex(pattern),
-  }),
-}), updateAvatarById);
+router.get('/:userId', reqValidation.userId, getUserById);
+router.patch('/me', reqValidation.me, updateProfileById);
+router.patch('/me/avatar', reqValidation.avatar, updateAvatarById);
 
 module.exports = router;

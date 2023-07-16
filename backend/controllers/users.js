@@ -1,25 +1,26 @@
+const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
-const NotFoundError = require('../errors/not-found-error');
 const ConflictError = require('../errors/conflict-error');
 const ValidationError = require('../errors/validation-error');
 
 const { NODE_ENV, JWT_SECRET } = process.env;
+const { findUserById, updateUserProfile } = require('./decorators');
 
 const getUsers = (req, res, next) => User.find({})
   .then((data) => res.send(data))
   .catch(next);
 
-const getUserById = (req, res, next) => User.findById(req.params.userId)
-  .orFail(new NotFoundError('Запрашиваемый пользователь не найден'))
-  .then((data) => res.send(data))
-  .catch(next);
+const getUserById = (req, res, next) => {
+  const { userId } = req.params;
+  return findUserById(userId, res, next);
+};
 
-const getThisUserById = (req, res, next) => User.findById(req.user._id)
-  .orFail(new NotFoundError('Запрашиваемый пользователь не найден'))
-  .then((data) => res.send(data))
-  .catch(next);
+const getThisUserById = (req, res, next) => {
+  const userId = req.user._id;
+  return findUserById(userId, res, next);
+};
 
 const createUser = (req, res, next) => {
   const {
@@ -37,38 +38,22 @@ const createUser = (req, res, next) => {
     .catch((err) => {
       if (err.code === 11000) {
         next(new ConflictError('Пользователь с таким email уже существует'));
-      }
-      if (err.name === 'ValidationError') {
+      } else if (err instanceof mongoose.Error.ValidationError) {
         next(new ValidationError(err.message));
+      } else {
+        next(err);
       }
-      next(err);
     });
 };
 
 const updateProfileById = (req, res, next) => {
   const { name, about } = req.body;
-  return User.findByIdAndUpdate(req.user._id, { name, about }, { new: true, runValidators: true })
-    .orFail(new NotFoundError('Запрашиваемый пользователь не найден'))
-    .then((data) => res.send(data))
-    .catch((err) => {
-      if (err.name === 'ValidationError') {
-        next(new ValidationError(err.message));
-      }
-      next(err);
-    });
+  return updateUserProfile(req, res, next, { name, about });
 };
 
 const updateAvatarById = (req, res, next) => {
   const { avatar } = req.body;
-  return User.findByIdAndUpdate(req.user._id, { avatar }, { new: true, runValidators: true })
-    .orFail(new NotFoundError('Запрашиваемый пользователь не найден'))
-    .then((data) => res.send(data))
-    .catch((err) => {
-      if (err.name === 'ValidationError') {
-        next(new ValidationError(err.message));
-      }
-      next(err);
-    });
+  return updateUserProfile(req, res, next, { avatar });
 };
 
 const login = (req, res, next) => {
