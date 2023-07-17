@@ -65,12 +65,4 @@ class Api {
 
 }
 
-// const api = new Api({
-//   baseUrl: 'https://api.mesto.anton-chernikov.nomoredomains.work',
-//   headers: {
-//     'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
-//     'Content-Type': 'application/json'
-//   }
-// });
-
 export default Api;

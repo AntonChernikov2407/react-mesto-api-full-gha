@@ -4,9 +4,9 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const ConflictError = require('../errors/conflict-error');
 const ValidationError = require('../errors/validation-error');
+const { findUserById, updateUserProfile } = require('./decorators');
 
 const { NODE_ENV, JWT_SECRET } = process.env;
-const { findUserById, updateUserProfile } = require('./decorators');
 
 const getUsers = (req, res, next) => User.find({})
   .then((data) => res.send(data))

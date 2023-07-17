@@ -3,6 +3,7 @@ const Card = require('../models/card');
 const NotFoundError = require('../errors/not-found-error');
 const ForbiddenError = require('../errors/forbidden-error');
 const ValidationError = require('../errors/validation-error');
+const { changeLikeState } = require('./decorators');
 
 const getCards = (req, res, next) => {
   Card.find({})
@@ -42,19 +43,13 @@ const createCard = (req, res, next) => {
 };
 
 const putLikeById = (req, res, next) => {
-  Card.findByIdAndUpdate(req.params.cardId, { $addToSet: { likes: req.user._id } }, { new: true })
-    .orFail(new NotFoundError('Карточка с указанным id не найдена'))
-    .populate(['owner', 'likes'])
-    .then((data) => res.send(data))
-    .catch(next);
+  const param = { $addToSet: { likes: req.user._id } };
+  return changeLikeState(req, res, next, param);
 };
 
 const deleteLikeById = (req, res, next) => {
-  Card.findByIdAndUpdate(req.params.cardId, { $pull: { likes: req.user._id } }, { new: true })
-    .orFail(new NotFoundError('Карточка с указанным id не найдена'))
-    .populate(['owner', 'likes'])
-    .then((data) => res.send(data))
-    .catch(next);
+  const param = { $pull: { likes: req.user._id } };
+  return changeLikeState(req, res, next, param);
 };
 
 module.exports = {
