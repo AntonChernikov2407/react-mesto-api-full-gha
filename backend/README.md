@@ -1,5 +1,5 @@
-[![Tests](../../actions/workflows/tests-13-sprint.yml/badge.svg)](../../actions/workflows/tests-13-sprint.yml) [![Tests](../../actions/workflows/tests-14-sprint.yml/badge.svg)](../../actions/workflows/tests-14-sprint.yml)
-# Проект Mesto фронтенд + бэкенд
+
+# Проект Mesto + бэкенд
 
 
 Сервер проекта Место с настроенными роутами и с двумя схемами для пользователей и карточек.
@@ -9,5 +9,3 @@
 2. Express
 3. MongoDB
 4. Mongoose
-
-Ссылка на репозиторий на GitHub Pages: https://antonchernikov2407.github.io/express-mesto-gha
