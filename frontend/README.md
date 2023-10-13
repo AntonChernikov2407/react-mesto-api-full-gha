@@ -10,13 +10,10 @@
   Стек примененных технологий:
 1. CSS
 2. HTML
-3. Java Script
+3. JavaScript
 4. WebPack
 5. API
 6. React
 
 Структура файлов и написание классов по методологии БЭМ
 
-Ссылка на проект на gh-pages: https://antonchernikov2407.github.io/react-mesto-auth/
-
-Выполнил Черников А.А.
