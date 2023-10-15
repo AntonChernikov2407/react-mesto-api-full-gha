@@ -1,14 +1,27 @@
-[![Статус тестов](../../actions/workflows/tests.yml/badge.svg)](../../actions/workflows/tests.yml)
+# Mesto
+Репозиторий для приложения проекта `Mesto`, включающий фронтенд и бэкенд части приложения.
 
-# react-mesto-api-full
-Репозиторий для приложения проекта `Mesto`, включающий фронтенд и бэкенд части приложения со следующими возможностями: авторизации и регистрации пользователей, операции с карточками и пользователями. 
+### Описание
+Адаптивное веб-приложение для обмена фотографиями красивых мест.
 
-Адрес репозитория: https://antonchernikov2407.github.io/react-mesto-api-full-gha
+Основной функционал:
+- Регистрация/Авторизация
+- Добавление/удаление фотокарточек
+- Возможность ставить/удалять лайки
+- Редактирование профиля
+- Просмотр выбранных фотокарточек в крупном формате
+- Живая валидация всех форм
+- "Выезжающее" меню на малых разрешениях экрана
 
-## Ссылки на проект
+### Ссылки на проект
 
-IP 158.160.69.104
+[Frontend](https://github.com/AntonChernikov2407/react-mesto-api-full-gha/tree/main/frontend)
 
-Frontend https://mesto.anton-chernikov.nomoredomains.work
+[Backend](https://github.com/AntonChernikov2407/react-mesto-api-full-gha/tree/main/backend)
 
-Backend https://api.mesto.anton-chernikov.nomoredomains.work
+### Инструкция по развертыванию:
+1. Скопировать репозиторий `git clone git@github.com:AntonChernikov2407/react-mesto-api-full-gha.git`
+2. Перейти в директорию бэкенда проекта и установить зависимости `npm i`
+3. Запустить бэкенд `npm run start`
+4. Перейти в директорию фронтенда проекта и установить зависимости `npm i`
+5. Запустить фронтенд `npm start`
