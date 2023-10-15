@@ -26,7 +26,7 @@ const Main = memo((props) => {
 
       <section className="elements" aria-label="карточки">
         {props.cards.map((card) => (
-          <Card 
+          <Card
             key={card.id} {...card} 
             onCardClick={props.onCardClick} 
             onCardLike={props.onCardLike}

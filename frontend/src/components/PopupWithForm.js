@@ -19,7 +19,7 @@ const PopupWithForm = memo((props) => {
         <form className="form" name={`${props.name}-form`} onSubmit={props.onSubmit} noValidate>
           <h2 className="form__title">{props.title}</h2>
           {props.children}
-          <button 
+          <button
             className={
               `form__submit-button 
               ${props.name === "delete-card" && "form__submit-button_margin_top"}
